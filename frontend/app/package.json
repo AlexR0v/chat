@@ -16,6 +16,7 @@
     "@ui/theme": "0.0.0",
     "@site/signin": "0.0.0",
     "@site/auth": "0.0.0",
+    "@ui/link": "0.0.0",
     "@atlantis-lab/layout": "^0.3.0",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",

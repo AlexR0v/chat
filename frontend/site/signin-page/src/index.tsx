@@ -1,3 +1,12 @@
-import SignIn from './SignIn'
+import React            from 'react'
+import { IntlProvider } from 'react-intl'
 
-export { SignIn }
+import SignIn           from './SignIn'
+
+export default () => (
+  <>
+    <IntlProvider locale='ru' defaultLocale='ru'>
+      <SignIn />
+    </IntlProvider>
+  </>
+)
