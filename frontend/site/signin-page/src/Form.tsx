@@ -1,20 +1,30 @@
-import * as React              from 'react'
-import { Box, Column, Layout } from '@atlantis-lab/layout'
-import { injectIntl }          from 'react-intl'
+import * as React                 from 'react'
+import { injectIntl }             from 'react-intl'
 
-import { Button }              from '@ui/button'
-import { Input }               from '@ui/input'
-import { Text }                from '@ui/text'
-import { theme }               from '@ui/theme'
+import { Button }                 from '@ui/button'
+import { NameIcon, PasswordIcon } from '@ui/icons'
+import { Input }                  from '@ui/input'
+import { Box, Column, Layout }    from '@ui/layout'
+import { Text }                   from '@ui/text'
+import { theme }                  from '@ui/theme'
 
-import messages                from './messages'
+import messages                   from './messages'
 
 const Form = ({ intl }) => (
   <Box width={340}>
     <Column>
-      <Input placeholder={intl.formatMessage(messages.login)} />
+      <Input
+        backgroundImage={`url(${NameIcon})`}
+        placeholder={intl.formatMessage(messages.login)}
+      />
       <Layout flexBasis={20} />
-      <Input placeholder={intl.formatMessage(messages.password)} />
+      <Input
+        type='password'
+        backgroundImage={`url(${PasswordIcon})`}
+        backgroundSize='8% 62%'
+        backgroundPosition='5px center'
+        placeholder={intl.formatMessage(messages.password)}
+      />
       <Layout flexBasis={54} />
       <Button>
         <Text

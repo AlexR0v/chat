@@ -1,6 +1,6 @@
 import { Border } from './Types'
 
-const border: Border = ['1px solid #757575']
+const border: Border = ['1px solid #c5c6c6']
 
 const [s] = border
 

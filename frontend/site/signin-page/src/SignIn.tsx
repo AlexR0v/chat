@@ -1,7 +1,7 @@
 import React                   from 'react'
-import { Box, Column, Layout } from '@atlantis-lab/layout'
 import { injectIntl }          from 'react-intl'
 
+import { Box, Column, Layout } from '@ui/layout'
 import { NextLink }            from '@ui/link'
 import { Text }                from '@ui/text'
 import { theme }               from '@ui/theme'
@@ -25,7 +25,7 @@ const SignIn = ({ intl }) => (
       {intl.formatMessage(messages.description)}
     </Text>
     <Layout flexBasis={30} />
-    <Box width={430} height={375} border={theme.border.s} borderRadius={theme.borderRadius.s}>
+    <Box boxShadow={theme.shadows.small} width={430} borderRadius={theme.borderRadius.s}>
       <Column alignItems='center'>
         <Layout flexBasis={54} />
         <Form />
@@ -33,6 +33,7 @@ const SignIn = ({ intl }) => (
         <NextLink href='/auth'>{intl.formatMessage(messages.linkAuth)}</NextLink>
         <Layout flexBasis={20} />
         <NextLink href='/'>{intl.formatMessage(messages.linkHome)}</NextLink>
+        <Layout flexBasis={30} />
       </Column>
     </Box>
   </Column>

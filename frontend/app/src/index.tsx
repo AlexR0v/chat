@@ -1,8 +1,8 @@
 import React              from 'react'
-import { Column, Layout } from '@atlantis-lab/layout'
 import { ThemeProvider }  from 'emotion-theming'
 import { IntlProvider }   from 'react-intl'
 
+import { Column, Layout } from '@ui/layout'
 import { NextLink }       from '@ui/link'
 import { theme }          from '@ui/theme'
 
