@@ -1,6 +1,25 @@
 {
   "name": "chat",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "mctl lint",
+    "test": "mctl test",
+    "commit": "mctl commit",
+    "format": "mctl format",
+    "typecheck": "mctl typecheck",
+    "checkcommit": "mctl precommit"
+  },
+  "dependencies": {
+    "lerna": "^3.22.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "mctl precommit",
+      "commit-msg": "mctl commitmsg"
+    }
+  },
+  "workspaces": [
+    "frontend/**/*"
+  ]
 }
