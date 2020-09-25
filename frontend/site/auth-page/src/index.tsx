@@ -1,9 +1,12 @@
-import React from 'react'
+import React            from 'react'
+import { IntlProvider } from 'react-intl'
 
-import Auth  from './Auth'
+import Auth             from './Auth'
 
 export default () => (
   <>
-    <Auth />
+    <IntlProvider locale='ru' defaultLocale='ru'>
+      <Auth />
+    </IntlProvider>
   </>
 )

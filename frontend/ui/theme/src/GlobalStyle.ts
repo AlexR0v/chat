@@ -20,5 +20,13 @@ fontFaces.map(({ family, type }) => {
 export default injectGlobal({
   body: {
     margin: 0,
+    height: '100%',
+    overflowX: 'hidden',
+  },
+  h1: {
+    margin: 0,
+  },
+  h2: {
+    margin: 0,
   },
 })

@@ -21,6 +21,6 @@ export interface BorderRadius extends Array<number> {
   m?: number
 }
 
-export interface Border extends Array<number> {
-  s?: number
+export interface Border extends Array<string> {
+  s?: string
 }
