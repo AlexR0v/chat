@@ -40,4 +40,12 @@ export default defineMessages({
     id: `${scope}.linkHome`,
     defaultMessage: 'На Главную',
   },
+  successTitle: {
+    id: `${scope}.successTitle`,
+    defaultMessage: 'Подтвердите свою почту',
+  },
+  successDescr: {
+    id: `${scope}.successDescr`,
+    defaultMessage: 'На вашу почту отправлено письмо с сылкой на подтверждение аккаунта',
+  },
 })
