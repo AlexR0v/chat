@@ -8,7 +8,8 @@
     "commit": "mctl commit",
     "format": "mctl format",
     "typecheck": "mctl typecheck",
-    "checkcommit": "mctl precommit"
+    "checkcommit": "mctl precommit",
+    "site:dev": "yarn workspace @chat/app dev"
   },
   "dependencies": {
     "lerna": "^3.22.1"
