@@ -1,12 +1,9 @@
-import React            from 'react'
-import { IntlProvider } from 'react-intl'
+import React  from 'react'
 
-import SignIn           from './SignIn'
+import SignIn from './SignIn'
 
 export default () => (
   <>
-    <IntlProvider locale='ru' defaultLocale='ru'>
-      <SignIn />
-    </IntlProvider>
+    <SignIn />
   </>
 )

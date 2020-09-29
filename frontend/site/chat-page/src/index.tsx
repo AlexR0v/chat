@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Auth  from './Auth'
+import Chat  from './Chat'
 
 export default () => (
   <>
-    <Auth />
+    <Chat />
   </>
 )

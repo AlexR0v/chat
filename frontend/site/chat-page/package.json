@@ -1,0 +1,12 @@
+{
+  "name": "@site/chat",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@ui/message": "0.0.0",
+    "react": "^16.13.1",
+    "react-intl": "^5.0.2"
+  }
+}

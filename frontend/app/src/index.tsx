@@ -10,6 +10,8 @@ export default () => (
       <NextLink href='/signin'>Авторизироваться</NextLink>
       <Layout flexBasis={50} />
       <NextLink href='/auth'>Зарегистрироваться</NextLink>
+      <Layout flexBasis={50} />
+      <NextLink href='/chat'>Чат</NextLink>
     </Column>
   </>
 )

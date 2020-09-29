@@ -1,0 +1,13 @@
+{
+  "name": "@ui/avatar",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@emotion/styled": "^10.0.27",
+    "styled-system": "^5.1.5",
+    "@ui/icons": "0.1.0",
+    "@ui/theme": "0.1.0"
+  }
+}

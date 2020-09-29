@@ -1,0 +1,16 @@
+{
+  "name": "@ui/message",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@ui/avatar": "0.0.0",
+    "@ui/layout": "^0.1.0",
+    "@ui/icons": "0.1.0",
+    "@ui/text": "^0.1.0",
+    "@ui/theme": "^0.1.0",
+    "react": "^16.13.1",
+    "date-fns": "^2.16.1"
+  }
+}
