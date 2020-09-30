@@ -16,6 +16,7 @@ const Chat = () => {
   const isSend1 = true
   const isRead1 = true
   const isSuccess1 = true
+  const isTyping = true
 
   return (
     <>
@@ -29,6 +30,7 @@ const Chat = () => {
         isSuccess={isSuccess1}
         isRead={isRead1}
       />
+      <Message isTyping={isTyping} />
     </>
   )
 }

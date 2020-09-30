@@ -4,14 +4,14 @@ import { background } from 'styled-system'
 import { theme }      from '@ui/theme'
 
 export const Input = styled('input')(
-  ({ isEmailOk }) => ({
+  () => ({
     height: '45px',
     width: '100%',
     outline: 'none',
     overflow: 'hidden',
     boxSizing: 'border-box',
     paddingLeft: '50px',
-    border: isEmailOk ? theme.border.ok : theme.border.s,
+    border: theme.border.s,
     borderRadius: theme.borderRadius.s,
     fontFamily: theme.fontFamily.text,
     fontSize: theme.fontSize.xs,

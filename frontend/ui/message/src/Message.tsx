@@ -3,7 +3,7 @@ import React, { FC }                from 'react'
 import { formatDistanceToNow }      from 'date-fns'
 
 import { Avatar }                   from '@ui/avatar'
-import { CheckIcon }                from '@ui/icons'
+import { Bubbling, CheckIcon }      from '@ui/icons'
 import { Box, Column, Layout, Row } from '@ui/layout'
 import { Text }                     from '@ui/text'
 import { theme }                    from '@ui/theme'
@@ -16,9 +16,19 @@ interface MessageProps {
   isSend?: boolean
   isRead?: boolean
   isSuccess?: boolean
+  isTyping?: boolean
 }
 
-export const Message: FC<MessageProps> = ({ ava, text, data, isMe, isSend, isRead, isSuccess }) => {
+export const Message: FC<MessageProps> = ({
+  ava,
+  text,
+  data,
+  isMe,
+  isSend,
+  isRead,
+  isSuccess,
+  isTyping,
+}) => {
   return (
     <Column>
       <Layout flexBasis={20} />
@@ -36,13 +46,16 @@ export const Message: FC<MessageProps> = ({ ava, text, data, isMe, isSend, isRea
             maxWidth={400}
             p={20}
           >
-            <Text
-              fontFamily={theme.fontFamily.text}
-              fontSize={theme.fontSize.xs}
-              color={isMe ? theme.colors.grey : theme.colors.white}
-            >
-              {text}
-            </Text>
+            {isTyping ? <Bubbling /> : null}
+            {text && (
+              <Text
+                fontFamily={theme.fontFamily.text}
+                fontSize={theme.fontSize.xs}
+                color={isMe ? theme.colors.grey : theme.colors.white}
+              >
+                {text}
+              </Text>
+            )}
           </Box>
           <Layout flexBasis={10} />
           <Layout maxWidth={400}>

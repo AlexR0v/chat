@@ -15,6 +15,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "formik": "^2.1.6",
     "@site/auth": "^0.1.0",
     "@site/signin": "^0.1.0",
     "@site/chat": "0.0.0",

@@ -17,20 +17,32 @@ const useStateCallbackWrapper = (initialValue, callBack) => {
   return [state, setState]
 }
 
-const Form = ({ intl }) => {
+const Form = ({ intl, isSuccess }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [success, setSuccess] = useState('')
   const [rePassword, setRePassword] = useState('')
   const [isSubmit, setIsSubmit] = useState(false)
-  const [isEmailOk, setIsEmailOk] = useState(false)
-  const [password, setPassword] = useStateCallbackWrapper('', () => {
-    if (password === rePassword && password.length >= 1) {
+  const [password, setPassword] = useState('')
+  const [isPassword, setIsPassword] = useState(false)
+  const [successPass, setSuccessPass] = useState('')
+
+  const [isValidEmail, setIsValidEmail] = useStateCallbackWrapper(false, () => {
+    if (isValidEmail) {
       setIsSubmit(true)
-      setSuccess(`${intl.formatMessage(messages.validPassword)}`)
+      setSuccess(`${intl.formatMessage(messages.validEmail)}`)
     }
-    if (password !== rePassword) {
-      setSuccess(`${intl.formatMessage(messages.declinedPassword)}`)
+  })
+  const [isValidPass, setIsValidPass] = useStateCallbackWrapper(false, () => {
+    if (isValidPass) {
+      setIsSubmit(true)
+      setSuccess('Подходящий пароль!')
+    }
+  })
+  const [isValidName, setIsValidName] = useStateCallbackWrapper(false, () => {
+    if (isValidName) {
+      setIsSubmit(true)
+      setSuccess('Отличное имя!:)')
     }
   })
 
@@ -40,45 +52,81 @@ const Form = ({ intl }) => {
     setRePassword('')
     setEmail('')
 
-    if (name && password && email) {
+    if (name && password && email && isValidName && isValidPass && isValidEmail && isPassword) {
       setSuccess(`${intl.formatMessage(messages.success)}`)
       setIsSubmit(true)
+      isSuccess(true)
       alert(`Имя: ${name}, пароль: ${password}, email: ${email}`) // eslint-disable-line
     } else {
       setSuccess(`${intl.formatMessage(messages.declined)}`)
     }
   }
 
-  const [isValid, setIsValid] = useStateCallbackWrapper('', () => {
-    if (!isValid && email.length >= 1) {
-      setSuccess(`${intl.formatMessage(messages.unValidEmail)}`)
-    }
-    if (isValid) {
-      setIsSubmit(true)
-      setIsEmailOk(true)
-      setSuccess(`${intl.formatMessage(messages.validEmail)}`)
-    }
-  })
-
-  const handleForm1 = event => {
+  const handleFormChange = event => {
     if (event.target.name === 'password') {
       setPassword(event.target.value)
+
+      setIsValidPass(
+        /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g.test(
+          event.target.value
+        )
+      )
+
+      if (!/[0-9a-zA-Z!@#$%^&*]{6,}/.test(event.target.value)) {
+        setSuccess('Пароль слишком короткий!')
+      }
+      if (!/(?=.*[a-z])/.test(event.target.value) && !/(?=.*[A-Z])/.test(event.target.value)) {
+        setSuccess('Пароль должен содержать латнские буквы в нижнем регистре!')
+      }
+      if (!/(?=.*[A-Z])/.test(event.target.value)) {
+        setSuccess('Пароль должен содержать латнские буквы в верхнем регистре!')
+      }
+
+      if (!/(?=.*[!@#$%^&*])/.test(event.target.value)) {
+        setSuccess('Пароль должен содержать спецсимволы ! @ # $ % ^ & *')
+      }
+
+      if (!/(?=.*[0-9])/.test(event.target.value)) {
+        setSuccess('Пароль должен иметь число!')
+      }
     }
+
     if (event.target.name === 'rePassword') {
       setRePassword(event.target.value)
     }
     if (event.target.name === 'email') {
-      setIsValid(
+      setIsValidEmail(
         /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
           event.target.value
         )
       )
+      if (
+        !/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
+          event.target.value
+        )
+      ) {
+        setSuccess('E-mail не валидный!')
+      }
       setEmail(event.target.value)
     }
     if (event.target.name === 'name') {
+      setIsValidName(/(^[A-Z]{1}[a-z]{1,14})|(^[А-Я]{1}[а-я]{1,14})/.test(event.target.value))
+      if (!/(^[A-Z]{1}[a-z]{1,14})|(^[А-Я]{1}[а-я]{1,14})/.test(event.target.value)) {
+        setSuccess('Имя не подходит!')
+      }
       setName(event.target.value)
     }
   }
+
+  useEffect(() => {
+    if (password === rePassword) {
+      setIsPassword(true)
+      setSuccessPass('')
+    } else {
+      setSuccessPass('Пароли не совпадают!')
+      setIsPassword(false)
+    }
+  }, [password, rePassword, isValidPass, name, email, isValidEmail])
 
   const handleKeyPress = event => {
     if (event.key === 'Enter') {
@@ -89,27 +137,28 @@ const Form = ({ intl }) => {
   useEffect(() => {
     const timeOut = setTimeout(() => {
       setSuccess('')
+      setSuccessPass('')
       setIsSubmit(false)
     }, 3000)
     return () => clearTimeout(timeOut)
-  }, [success, setSuccess])
+  }, [success, setSuccess, setSuccessPass])
 
   return (
     <Box width={340}>
-      <Column onSubmit={handleKeyPress}>
+      <Column onKeyPress={handleKeyPress}>
         <Text
           fontSize={theme.fontSize.xs}
           color={isSubmit ? theme.colors.lightBlue : theme.colors.error}
           fontFamily={theme.fontFamily.text}
         >
           {success}
+          {successPass}
         </Text>
         <Input
           type='email'
           name='email'
           value={email}
-          setIsEmailOk={isEmailOk}
-          onChange={handleForm1}
+          onChange={handleFormChange}
           backgroundImage={`url(${EmailIcon})`}
           backgroundSize='8% 62%'
           backgroundPosition='5px center'
@@ -120,7 +169,7 @@ const Form = ({ intl }) => {
           type='text'
           value={name}
           name='name'
-          onChange={handleForm1}
+          onChange={handleFormChange}
           backgroundImage={`url(${NameIcon})`}
           placeholder={intl.formatMessage(messages.name)}
         />
@@ -129,7 +178,7 @@ const Form = ({ intl }) => {
           type='password'
           name='password'
           value={password}
-          onChange={handleForm1}
+          onChange={handleFormChange}
           backgroundImage={`url(${PasswordIcon})`}
           backgroundSize='8% 62%'
           backgroundPosition='5px center'
@@ -140,7 +189,7 @@ const Form = ({ intl }) => {
           type='password'
           name='rePassword'
           value={rePassword}
-          onChange={handleForm1}
+          onChange={handleFormChange}
           backgroundImage={`url(${PasswordIcon})`}
           backgroundSize='8% 62%'
           backgroundPosition='5px center'
