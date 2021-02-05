@@ -3,8 +3,8 @@ import { background } from 'styled-system'
 
 import { theme }      from '@ui/theme'
 
-export const Input = styled.input(
-  {
+export const Input = styled('input')(
+  () => ({
     height: '45px',
     width: '100%',
     outline: 'none',
@@ -22,6 +22,6 @@ export const Input = styled.input(
     '::placeholder': {
       color: theme.colors.lightGrey,
     },
-  },
+  }),
   background
 )

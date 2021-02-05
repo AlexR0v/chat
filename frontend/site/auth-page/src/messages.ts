@@ -48,4 +48,28 @@ export default defineMessages({
     id: `${scope}.successDescr`,
     defaultMessage: 'На вашу почту отправлено письмо с сылкой на подтверждение аккаунта',
   },
+  success: {
+    id: `${scope}.success`,
+    defaultMessage: 'Спасибо! Мы скоро с вами свяжемся!',
+  },
+  declined: {
+    id: `${scope}.declined`,
+    defaultMessage: 'Необходимо заполнить все поля формы!',
+  },
+  declinedPassword: {
+    id: `${scope}.declinedPassword`,
+    defaultMessage: 'Пароли не совпадают!',
+  },
+  unValidEmail: {
+    id: `${scope}.unValidEmail`,
+    defaultMessage: 'Е-mail не верный!',
+  },
+  validEmail: {
+    id: `${scope}.validEmail`,
+    defaultMessage: 'Е-mail верный!',
+  },
+  validPassword: {
+    id: `${scope}.validPassword`,
+    defaultMessage: 'Пароли совпадают!',
+  },
 })

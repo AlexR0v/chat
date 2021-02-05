@@ -35,7 +35,7 @@ const Auth = ({ intl }) => {
         {!isSuccess ? (
           <Column alignItems='center'>
             <Layout flexBasis={54} />
-            <Form />
+            <Form isSuccess={setIsSuccess} />
             <Layout flexBasis={30} />
             <NextLink href='/signin'>{intl.formatMessage(messages.linkAuth)}</NextLink>
             <Layout flexBasis={20} />
